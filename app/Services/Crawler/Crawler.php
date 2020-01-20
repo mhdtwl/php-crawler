@@ -78,9 +78,11 @@ class Crawler
 
         foreach (array_unique($results['urls']) as $item) {
             $item = $this->cleanUrl($item);
+            $UrlEmails = [];
 
             if ($this->canBeStored($item) && $this->isValidUrl($item) && $this->isNotMediaFile($item) && $this->isInScope($item)) {
                 Url::firstOrCreate(['name' => $item, 'search_id' => $this->search->id]);
+
             }
         }
 
