@@ -5,7 +5,7 @@ namespace App\Services\Crawler;
 use App\Email;
 use App\Search;
 use App\Url;
-use Hedii\Extractors\Extractor;
+use App\Extractors\MyExtractor;
 
 class Crawler
 {
@@ -19,7 +19,7 @@ class Crawler
     /**
      * The extractor instance.
      *
-     * @var \Hedii\Extractors\Extractor
+     * @var \App\Extractors\MyExtractor
      */
     private $extractor;
 
@@ -31,7 +31,7 @@ class Crawler
     public function __construct(Search $search)
     {
         $this->search = $search;
-        $this->extractor = new Extractor();
+        $this->extractor = new MyExtractor();
     }
 
     /**
@@ -78,17 +78,19 @@ class Crawler
 
         foreach (array_unique($results['urls']) as $item) {
             $item = $this->cleanUrl($item);
-            $UrlEmails = [];
 
             if ($this->canBeStored($item) && $this->isValidUrl($item) && $this->isNotMediaFile($item) && $this->isInScope($item)) {
                 Url::firstOrCreate(['name' => $item, 'search_id' => $this->search->id]);
-
             }
         }
 
-        foreach (array_unique($results['emails']) as $email) {
+        foreach (array_unique($results['emailUrls']) as $emailUrl) {
+            $email = explode(",", $emailUrl)[0];
+            $urlName = explode(",", $emailUrl)[1];
+            $url = Url::where('search_id', $this->search->id)->where('name', $urlName)->first();
+
             if ($this->canBeStored($email) && $this->isValidEmail($email)) {
-                Email::firstOrCreate(['name' => $email, 'search_id' => $this->search->id]);
+                Email::firstOrCreate(['name' => $email, 'url_id' => $url->id ,'search_id' => $this->search->id]);
             }
         }
 
