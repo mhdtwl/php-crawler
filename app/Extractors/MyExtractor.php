@@ -3,6 +3,7 @@
 namespace App\Extractors;
 
 use Hedii\Extractors\Extractor;
+use Hedii\Extractors\UrlExtractor;
 
 class MyExtractor extends Extractor
 {

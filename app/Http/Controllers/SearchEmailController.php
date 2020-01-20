@@ -16,11 +16,14 @@ class SearchEmailController extends Controller
      */
     public function __invoke(Search $search): BinaryFileResponse
     {
-        $emails = $search->emails->pluck('name')->unique()->all();
-
+        $emailUrl = $search->emails->unique()->all();
+        $email_list = [];
+        foreach($emailUrl as $email){
+            $email_list[] = $email->name ." => ". $email->url->name;
+        }
         $tempFileName = str_random() . '.txt';
 
-        Storage::put($tempFileName, implode("\r\n", $emails));
+        Storage::put($tempFileName, implode("\r\n", $email_list));
 
         return response()
             ->download(storage_path("app/{$tempFileName}"))
