@@ -36,6 +36,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
 
-        $this->redirectTo = route('dashboard');
+        $this->redirectTo = route('dashboard', \App::getLocale());
     }
 }

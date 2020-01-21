@@ -16,12 +16,17 @@ class CreateEmailsTable extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->index();
+            $table->unsignedInteger('url_id');
             $table->unsignedInteger('search_id');
 
             $table->unique(['name', 'search_id']);
 
             $table->foreign('search_id')
                 ->references('id')->on('searches')
+                ->onDelete('cascade');
+
+            $table->foreign('url_id')
+                ->references('id')->on('urls')
                 ->onDelete('cascade');
         });
     }

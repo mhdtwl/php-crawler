@@ -6,16 +6,16 @@
             <div class="col col-sm-10 col-md-9 col-lg-6 col-xl-6">
                 <div class="card">
                     <div class="card-header">
-                        Register
+                        {{ __('header.Register') }}
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('register' , app()->getLocale())  }}">
                             {{ csrf_field() }}
 
                             <div class="form-group">
                                 <label for="email"
                                        class="form-control-label">
-                                    Name
+                                    {{ __('account.name') }}
                                 </label>
                                 <input id="name"
                                        type="text"
@@ -34,7 +34,7 @@
                             <div class="form-group">
                                 <label for="email"
                                        class="form-control-label">
-                                    E-Mail Address
+                                    {{ __('account.e-mail') }}
                                 </label>
                                 <input id="email"
                                        type="email"
@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label for="password"
                                        class="form-control-label">
-                                    Password
+                                    {{ __('account.password') }}
                                 </label>
                                 <input id="password"
                                        type="password"
@@ -69,7 +69,7 @@
 
                             <div class="form-group">
                                 <label for="password-confirm">
-                                    Confirm Password
+                                    {{ __('account.confirm_password') }}
                                 </label>
                                 <input id="password-confirm"
                                        type="password"
@@ -80,7 +80,7 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    {{ __('header.Register') }}
                                 </button>
                             </div>
                         </form>

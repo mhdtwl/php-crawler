@@ -27,7 +27,8 @@ class Email extends Model
      * @var array
      */
     protected $casts = [
-        'search_id' => 'integer'
+        'search_id' => 'integer',
+        'url_id' => 'integer'
     ];
 
     /**
@@ -38,5 +39,15 @@ class Email extends Model
     public function search(): BelongsTo
     {
         return $this->belongsTo(Search::class);
+    }
+
+    /**
+     * Get the url that owns the email.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function url(): BelongsTo
+    {
+        return $this->belongsTo(Url::class);
     }
 }

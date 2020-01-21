@@ -6,16 +6,18 @@
             <div class="col col-sm-10 col-md-9 col-lg-6 col-xl-6">
                 <div class="card">
                     <div class="card-header">
-                        Login
+
+                        {{ __('header.Login') }}
+
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('login', app()->getLocale())  }}">
                             {{ csrf_field() }}
 
                             <div class="form-group">
                                 <label for="email"
                                        class="form-control-label">
-                                    E-Mail Address
+                                    {{ __('account.e-mail') }}
                                 </label>
                                 <input id="email"
                                        type="email"
@@ -34,7 +36,7 @@
                             <div class="form-group">
                                 <label for="password"
                                        class="form-control-label">
-                                    Password
+                                    {{ __('account.password') }}
                                 </label>
                                 <input id="password"
                                        type="password"
@@ -57,7 +59,7 @@
                                            class="form-check-input {{ $errors->has('remember') ? ' is-invalid' : '' }}">
                                     <label for="remember"
                                            class="form-check-label">
-                                        Remember Me
+                                        {{ __('account.remember_me') }}
                                     </label>
                                 </div>
                                 @if ($errors->has('remember'))
@@ -69,11 +71,11 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">
-                                    Login
+                                    {{ __('header.Login') }}
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
+                                <a class="btn btn-link" href="{{ route('password.request',  app()->getLocale())  }}">
+                                    {{ __('account.forget_password') }}?
                                 </a>
                             </div>
                         </form>
