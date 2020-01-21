@@ -38,7 +38,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
 
-        $this->redirectTo = route('dashboard');
+        $this->redirectTo = route('dashboard',  \App::getLocale());
     }
 
     /**

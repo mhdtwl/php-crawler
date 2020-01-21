@@ -9,7 +9,7 @@
                         Reset Password
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('password.request', app()->getLocale())  }}">
                             {{ csrf_field() }}
 
                             <input type="hidden" name="token" value="{{ $token }}">

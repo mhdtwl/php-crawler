@@ -15,7 +15,7 @@
                             </div>
                         @endif
 
-                        <form class="form-horizontal" method="POST" action="{{ route('password.email') }}">
+                        <form class="form-horizontal" method="POST" action="{{ route('password.email', app()->getLocale())}}">
                             {{ csrf_field() }}
 
                             <div class="form-group">
